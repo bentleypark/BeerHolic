@@ -6,16 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.bentley.beerholic.R
 import com.bentley.beerholic.data.remote.response.BeerModel
 import com.bentley.beerholic.databinding.FragmentDetailBinding
 import com.bentley.beerholic.ui.base.ViewBindingHolder
 import com.bentley.beerholic.ui.base.ViewBindingHolderImpl
+import com.bentley.beerholic.utils.SharedPreferenceManager
 import com.bentley.beerholic.utils.makeGone
 import com.bentley.beerholic.utils.makeVisible
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailFragment : Fragment(),
@@ -23,11 +27,20 @@ class DetailFragment : Fragment(),
 
     private val viewModel: DetailViewModel by viewModels()
 
+    @Inject
+    lateinit var pref: SharedPreferenceManager
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = initBinding(FragmentDetailBinding.inflate(layoutInflater), this) {
-
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToSearchFragment(pref.getLastQuery()!!))
+                }
+            })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,9 +73,14 @@ class DetailFragment : Fragment(),
                 }
             }
 
-            tvTitle.text = "Name: ${detail.name}"
+            tvTitle.text = detail.name
+            tvFirstBrewDate.text = detail.first_brewed
             tvAbv.text = "ABV: ${detail.abv} %"
-            tvContents.text = "Description: ${detail.description}"
+            tvContents.text = "Description: \n${detail.description}"
+
+            btnBack.setOnClickListener {
+                findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToSearchFragment(pref.getLastQuery()!!))
+            }
         }
     }
 

@@ -7,10 +7,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bentley.beerholic.data.remote.SearchRepository
 import com.bentley.beerholic.data.remote.response.BeerModel
+import com.bentley.beerholic.utils.SharedPreferenceManager
 import kotlinx.coroutines.launch
 
 class SearchViewModel @ViewModelInject
-constructor(private val searchRepository: SearchRepository) :
+constructor(
+    private val searchRepository: SearchRepository,
+    private val pref: SharedPreferenceManager
+) :
     ViewModel() {
 
     private var currentQueryValue = ""
@@ -46,6 +50,7 @@ constructor(private val searchRepository: SearchRepository) :
             currentQueryValue = newQuery
             position = 1
         }
+        pref.setLastQuery(newQuery)
     }
 
     fun fetchNextPage() {

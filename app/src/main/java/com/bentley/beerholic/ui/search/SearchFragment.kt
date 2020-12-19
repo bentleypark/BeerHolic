@@ -23,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(),
@@ -34,14 +35,18 @@ class SearchFragment : Fragment(),
     private var isLastPage = false
     private var isLoading = false
 
+    @Inject
+    lateinit var pref: SharedPreferenceManager
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = initBinding(FragmentSearchBinding.inflate(layoutInflater), this) {
+    ): View = initBinding(FragmentSearchBinding.inflate(layoutInflater), this) {
         activity?.onBackPressedDispatcher?.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
+                    pref.setLastQuery("")
                     requireActivity().finish()
                 }
             })
@@ -49,6 +54,7 @@ class SearchFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkArgument()
         setUpViews()
         initRecycleView()
         setUpObserves()
@@ -174,5 +180,28 @@ class SearchFragment : Fragment(),
         } else {
             binding.searchLayout.makeSnackBar(getString(R.string.no_input_text_waring))
         }
+    }
+
+    private fun checkArgument() {
+        val lastQuery = arguments?.getString(ARGS_KEY)
+        if (!lastQuery.isNullOrEmpty()) {
+            lifecycleScope.launch {
+                binding!!.apply {
+                    ivDefaultImg.makeGone()
+                    searchList.makeGone()
+                    progressCircular.makeVisible()
+
+                    delay(1000)
+                    progressCircular.makeGone()
+                    searchList.makeVisible()
+                }
+
+                viewModel.searchBeers(lastQuery)
+            }
+        }
+    }
+
+    companion object {
+        const val ARGS_KEY = "lastQuery"
     }
 }

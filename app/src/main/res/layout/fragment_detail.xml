@@ -71,9 +71,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                ads:layout_constraintEnd_toEndOf="parent"
                 ads:layout_constraintStart_toStartOf="parent"
                 ads:layout_constraintTop_toBottomOf="@+id/iv_image"
                 tools:text="Beer Name" />
@@ -83,11 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:textSize="16sp"
-                ads:layout_constraintStart_toStartOf="@+id/tv_title"
+                android:textColor="@color/black"
+                ads:layout_constraintStart_toStartOf="parent"
                 ads:layout_constraintTop_toBottomOf="@+id/tv_title"
-                tools:text="Since" />
+                android:text="Since"
+                />
 
             <TextView
                 android:id="@+id/tv_first_brew_date"
@@ -96,6 +101,7 @@
                 android:layout_below="@id/tv_title"
                 android:layout_marginStart="16dp"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 ads:layout_constraintStart_toEndOf="@+id/tv_first_brew"
                 ads:layout_constraintTop_toTopOf="@+id/tv_first_brew"
                 tools:text="날짜" />
@@ -107,6 +113,7 @@
                 android:layout_below="@id/tv_title"
                 android:layout_marginTop="16dp"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 ads:layout_constraintStart_toStartOf="@+id/tv_first_brew"
                 ads:layout_constraintTop_toBottomOf="@+id/tv_first_brew"
                 tools:text="도수" />
@@ -119,7 +126,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 ads:layout_constraintBottom_toBottomOf="parent"
                 ads:layout_constraintEnd_toEndOf="parent"
                 ads:layout_constraintStart_toStartOf="@+id/tv_abv"

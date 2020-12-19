@@ -23,5 +23,13 @@
             android:name="itemId"
             android:defaultValue="1"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_searchFragment"
+            app:destination="@id/searchFragment" >
+            <argument
+                android:name="lastQuery"
+                android:defaultValue='""'
+                app:argType="string" />
+        </action>
     </fragment>
 </navigation>
