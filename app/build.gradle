@@ -58,7 +58,6 @@ dependencies {
     implementation Libs.navUiKtx
     implementation Libs.navFragment
     implementation Libs.navFragmentKtx
-    implementation Libs.paging3
 
     implementation Libs.hiltAndroid
     implementation Libs.hiltViewModel
