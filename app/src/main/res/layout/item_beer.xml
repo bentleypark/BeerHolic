@@ -30,7 +30,7 @@
 
             <TextView
                 android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/tv_abv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title"
                 android:layout_marginStart="16dp"
@@ -51,7 +51,7 @@
 
             <TextView
                 android:id="@+id/tv_description"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_abv"
                 android:layout_marginVertical="8dp"
@@ -59,9 +59,9 @@
                 android:layout_marginEnd="70dp"
                 android:layout_toEndOf="@id/iv_image"
                 android:ellipsize="end"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:textColor="@color/black"
-                tools:text="내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용" />
+                tools:text="설명" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

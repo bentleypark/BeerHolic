@@ -26,8 +26,8 @@ constructor(private val searchRepository: SearchRepository) :
         viewModelScope.launch {
             val response = searchRepository.searchBeers(query)
             Timber.d("response: $response")
+            _searchResult.value = response
             if (response!!.isNotEmpty()) {
-                _searchResult.value = response
                 position += 1
             }
         }

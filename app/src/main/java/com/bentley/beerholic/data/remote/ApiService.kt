@@ -13,7 +13,7 @@ interface ApiService {
 
     @GET("beers")
     suspend fun searchByName(
-        @Query("name") name: String,
+        @Query("beer_name") name: String,
         @Query("page") page: Int,
         @Query("per_page") loadSize: Int,
     ): Response<List<BeerModel>>

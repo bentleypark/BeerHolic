@@ -23,9 +23,11 @@ class SearchResultAdapter(private val list: MutableList<BeerModel>) :
                 tvAbv.text = "ABV: ${item.abv} %"
                 tvDescription.text = "Description: ${item.description}"
 
-                ivImage.load(item.image_url) {
-                    crossfade(true)
-                    placeholder(R.drawable.ic_placeholder)
+                if (item.image_url != null) {
+                    ivImage.load(item.image_url) {
+                        crossfade(true)
+                        placeholder(R.drawable.ic_placeholder)
+                    }
                 }
             }
         }
@@ -47,6 +49,11 @@ class SearchResultAdapter(private val list: MutableList<BeerModel>) :
     fun addAll(newList: List<BeerModel>) {
         list.clear()
         list.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    fun clearAll() {
+        list.clear()
         notifyDataSetChanged()
     }
 }
