@@ -1,9 +1,6 @@
 package com.bentley.beerholic.data.remote
 
-import com.bentley.beerholic.data.remote.response.BeerData
 import com.bentley.beerholic.ui.base.BaseRepository
-import kotlinx.coroutines.flow.Flow
-import timber.log.Timber
 
 class SearchRepository constructor(
     private val apiService: ApiService
