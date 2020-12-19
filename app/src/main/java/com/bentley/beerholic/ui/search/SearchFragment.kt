@@ -16,10 +16,7 @@ import com.bentley.beerholic.R
 import com.bentley.beerholic.databinding.FragmentSearchBinding
 import com.bentley.beerholic.ui.base.ViewBindingHolder
 import com.bentley.beerholic.ui.base.ViewBindingHolderImpl
-import com.bentley.beerholic.utils.hideKeyboard
-import com.bentley.beerholic.utils.makeGone
-import com.bentley.beerholic.utils.makeSnackBar
-import com.bentley.beerholic.utils.makeVisible
+import com.bentley.beerholic.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -32,6 +29,8 @@ class SearchFragment : Fragment(),
     private val viewModel: SearchViewModel by viewModels()
     private var searchJob: Job? = null
     private lateinit var searchResultAdapter: SearchResultAdapter
+    private var isLastPage = false
+    private var isLoading = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +73,7 @@ class SearchFragment : Fragment(),
                         count: Int
                     ) {
                         searchResultAdapter.clearAll()
+                        binding.ivDefaultImg.makeVisible()
                     }
 
                     override fun afterTextChanged(s: Editable?) {
@@ -93,6 +93,22 @@ class SearchFragment : Fragment(),
         binding!!.searchList.apply {
             adapter = searchResultAdapter
             setHasFixedSize(true)
+
+            addOnScrollListener(object :
+                PaginationScrollListener(this.layoutManager as LinearLayoutManager) {
+                override fun isLastPage(): Boolean {
+                    return isLastPage
+                }
+
+                override fun isLoading(): Boolean {
+                    return isLoading
+                }
+
+                override fun loadMoreItems() {
+                    isLoading = true
+                    viewModel.fetchNextPage()
+                }
+            })
         }
     }
 
@@ -106,12 +122,22 @@ class SearchFragment : Fragment(),
                         delay(1000)
                         progressCircular.makeGone()
                     }
-                    if (result.isNotEmpty()) {
+
+                    if (result != null && result.isNotEmpty()) {
                         binding.searchList.makeVisible()
                         searchResultAdapter.addAll(result)
                     } else {
                         binding.tvNoResult.makeVisible()
                     }
+                }
+            })
+
+            nextResult.observe(viewLifecycleOwner, { result ->
+                if (result.isNotEmpty()) {
+                    searchResultAdapter.addItems(result)
+                    isLoading = false
+                } else {
+                    isLastPage = true
                 }
             })
         }

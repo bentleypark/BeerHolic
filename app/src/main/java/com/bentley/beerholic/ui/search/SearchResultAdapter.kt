@@ -56,4 +56,9 @@ class SearchResultAdapter(private val list: MutableList<BeerModel>) :
         list.clear()
         notifyDataSetChanged()
     }
+
+    fun addItems(nextList: List<BeerModel>){
+        list.addAll(nextList)
+        notifyDataSetChanged()
+    }
 }
