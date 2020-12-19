@@ -52,19 +52,16 @@ dependencies {
     implementation Libs.recyclerview
     implementation Libs.liveData
     implementation Libs.viewModel
-    implementation Libs.startUp
 
+    implementation Libs.startUp
     implementation Libs.navUi
     implementation Libs.navUiKtx
     implementation Libs.navFragment
     implementation Libs.navFragmentKtx
+    implementation Libs.paging3
 
     implementation Libs.hiltAndroid
     implementation Libs.hiltViewModel
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     kapt Libs.hiltAndroidCompiler
     kapt Libs.hiltCompiler
 

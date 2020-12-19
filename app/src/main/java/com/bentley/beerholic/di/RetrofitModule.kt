@@ -1,6 +1,7 @@
 package com.bentley.beerholic.di
 
 import android.content.Context
+import com.bentley.beerholic.App
 import com.bentley.beerholic.data.remote.ApiService
 import com.bentley.beerholic.data.remote.AuthInterceptor
 import com.bentley.beerholic.utils.NetworkCheck
@@ -66,5 +67,11 @@ object RetrofitModule {
     @Provides
     fun provideNetworkCheck(context: Context): NetworkCheck {
         return NetworkCheck(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAppContext(): Context {
+        return App.globalApplicationContext
     }
 }
