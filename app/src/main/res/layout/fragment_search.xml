@@ -12,14 +12,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.BookSearch.AppBarOverlay">
+        android:theme="@style/Theme.BeerHolic.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.BookSearch.PopupOverlay">
+            app:popupTheme="@style/Theme.BeerHolic.PopupOverlay">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

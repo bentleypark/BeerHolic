@@ -10,7 +10,14 @@ class SearchRepository constructor(
         safeApiCall(
             call = {
                 apiService.searchByName(query, page, NETWORK_PAGE_SIZE)
-            }, errorMessage = ""
+            }, errorMessage = "Error during Search Beer"
+        )
+
+    suspend fun fetchBeerDetails(id: String) =
+        safeApiCall(
+            call = {
+                apiService.searchById(id)
+            }, errorMessage = "Error during Fetching Detail Info"
         )
 
     companion object {

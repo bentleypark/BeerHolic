@@ -18,8 +18,8 @@ interface ApiService {
         @Query("per_page") loadSize: Int,
     ): Response<List<BeerModel>>
 
-    suspend fun searchByid(
+    @GET("beers")
+    suspend fun searchById(
         @Query("ids") ids: String,
-//        @Query("per_page") page: Int,
-    ): Response<BeerModel>
+    ): Response<List<BeerModel>>
 }

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/search_fragment_background"
+    tools:context=".ui.detail.DetailFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.BeerHolic.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.BeerHolic.PopupOverlay">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:background="#00000000"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:src="@drawable/ic_arrow_back"
+                    ads:layout_constraintBottom_toBottomOf="parent"
+                    ads:layout_constraintStart_toStartOf="parent"
+                    ads:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.13" />
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_placeholder"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintStart_toStartOf="parent"
+                ads:layout_constraintTop_toTopOf="@+id/guideline" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                ads:layout_constraintStart_toStartOf="parent"
+                ads:layout_constraintTop_toBottomOf="@+id/iv_image"
+                tools:text="Beer Name" />
+
+            <TextView
+                android:id="@+id/tv_first_brew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_marginTop="16dp"
+                android:textSize="16sp"
+                ads:layout_constraintStart_toStartOf="@+id/tv_title"
+                ads:layout_constraintTop_toBottomOf="@+id/tv_title"
+                tools:text="Since" />
+
+            <TextView
+                android:id="@+id/tv_first_brew_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_marginStart="16dp"
+                android:textSize="16sp"
+                ads:layout_constraintStart_toEndOf="@+id/tv_first_brew"
+                ads:layout_constraintTop_toTopOf="@+id/tv_first_brew"
+                tools:text="날짜" />
+
+            <TextView
+                android:id="@+id/tv_abv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_marginTop="16dp"
+                android:textSize="16sp"
+                ads:layout_constraintStart_toStartOf="@+id/tv_first_brew"
+                ads:layout_constraintTop_toBottomOf="@+id/tv_first_brew"
+                tools:text="도수" />
+
+            <TextView
+                android:id="@+id/tv_contents"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="15sp"
+                ads:layout_constraintBottom_toBottomOf="parent"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintStart_toStartOf="@+id/tv_abv"
+                ads:layout_constraintTop_toBottomOf="@+id/tv_abv"
+                tools:text="내용" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progress_circular"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:translationZ="2dp"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

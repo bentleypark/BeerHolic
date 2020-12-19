@@ -9,8 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bentley.beerholic.R
 import com.bentley.beerholic.databinding.FragmentSearchBinding
@@ -36,6 +38,13 @@ class SearchFragment : Fragment(),
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = initBinding(FragmentSearchBinding.inflate(layoutInflater), this) {
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finish()
+                }
+            })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

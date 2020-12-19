@@ -3,6 +3,7 @@ package com.bentley.beerholic.ui.search
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bentley.beerholic.R
@@ -28,6 +29,11 @@ class SearchResultAdapter(private val list: MutableList<BeerModel>) :
                         crossfade(true)
                         placeholder(R.drawable.ic_placeholder)
                     }
+                }
+
+                beerItem.setOnClickListener {
+                    it.findNavController()
+                        .navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(item.id.toString()))
                 }
             }
         }
@@ -57,7 +63,7 @@ class SearchResultAdapter(private val list: MutableList<BeerModel>) :
         notifyDataSetChanged()
     }
 
-    fun addItems(nextList: List<BeerModel>){
+    fun addItems(nextList: List<BeerModel>) {
         list.addAll(nextList)
         notifyDataSetChanged()
     }
