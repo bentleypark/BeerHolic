@@ -1,7 +1,7 @@
-package com.bentley.beerholic.data.remote.response
+package com.bentley.beerholic.data.remote
 
 import androidx.paging.PagingSource
-import com.bentley.beerholic.data.remote.ApiService
+import com.bentley.beerholic.data.remote.response.BeerData
 import timber.log.Timber
 
 class SearchPagingSource constructor(
@@ -28,7 +28,6 @@ class SearchPagingSource constructor(
                 }
             )
         } catch (e: Exception) {
-            // Handle errors in this block
             Timber.e(e)
             return LoadResult.Error(e)
         }
