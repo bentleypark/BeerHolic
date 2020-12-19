@@ -38,7 +38,11 @@ class DetailFragment : Fragment(),
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToSearchFragment(pref.getLastQuery()!!))
+                    findNavController().navigate(
+                        DetailFragmentDirections.actionDetailFragmentToSearchFragment(
+                            pref.getLastQuery()!!
+                        )
+                    )
                 }
             })
     }
@@ -76,10 +80,15 @@ class DetailFragment : Fragment(),
             tvTitle.text = detail.name
             tvFirstBrewDate.text = detail.first_brewed
             tvAbv.text = "ABV: ${detail.abv} %"
-            tvContents.text = "Description: \n${detail.description}"
+            tvTagline.text = "People's Tags: ${detail.tagline}"
+            tvContents.text = "Description: \n\n${detail.description}"
 
             btnBack.setOnClickListener {
-                findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToSearchFragment(pref.getLastQuery()!!))
+                findNavController().navigate(
+                    DetailFragmentDirections.actionDetailFragmentToSearchFragment(
+                        pref.getLastQuery()!!
+                    )
+                )
             }
         }
     }
