@@ -1,11 +1,7 @@
 package com.bentley.beerholic.data.remote
 
-import com.bentley.beerholic.data.remote.response.BeerData
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import com.bentley.beerholic.data.remote.response.BeerModel
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -20,10 +16,10 @@ interface ApiService {
         @Query("name") name: String,
         @Query("page") page: Int,
         @Query("per_page") loadSize: Int,
-    ): Response<List<BeerData>>
+    ): Response<List<BeerModel>>
 
     suspend fun searchByid(
         @Query("ids") ids: String,
 //        @Query("per_page") page: Int,
-    ): Response<BeerData>
+    ): Response<BeerModel>
 }

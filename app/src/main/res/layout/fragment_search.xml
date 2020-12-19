@@ -3,6 +3,7 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/search_fragment_background"
@@ -53,7 +54,7 @@
                         android:paddingLeft="@dimen/search_view_text_padding"
                         android:paddingRight="@dimen/search_view_text_padding"
                         android:textAlignment="viewStart"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/white"
                         android:textCursorDrawable="@null"
                         android:textSize="16sp" />
@@ -115,16 +116,15 @@
             android:id="@+id/search_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="8dp"
             android:elevation="5dp"
             android:scrollbarSize="2dp"
             android:scrollbars="vertical"
             android:visibility="gone"
+            ads:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             ads:layout_constraintBottom_toBottomOf="parent"
             ads:layout_constraintTop_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-             />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
